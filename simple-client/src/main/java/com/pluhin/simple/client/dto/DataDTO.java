@@ -1,6 +1,7 @@
 package com.pluhin.simple.client.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class DataDTO {
 
@@ -18,5 +19,23 @@ public class DataDTO {
 
   public LocalDateTime getServerTime() {
     return serverTime;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    DataDTO dataDTO = (DataDTO) o;
+    return secret.equals(dataDTO.secret) &&
+        serverTime.equals(dataDTO.serverTime);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(secret, serverTime);
   }
 }
